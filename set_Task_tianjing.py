@@ -17,7 +17,7 @@ def set_time_day():
     now = datetime.datetime.now()
     the_time_1 = now.strftime('%Y'+"-"+'%m') 
     the_time_2 = now.strftime('%d')
-    the_time_2 = str(int(the_time_2) + 9)
+    the_time_2 = str(int(the_time_2) + 1)
     the_time = the_time_1+"-"+the_time_2
     return the_time
 
@@ -57,4 +57,4 @@ def set_task_tianjing(tasks):
 
 if __name__ == '__main__':
     
-    set_task_tianjing(["天镜\订单商品管理系统.txt"])
+    set_task_tianjing(["*********************"])

@@ -1,24 +1,15 @@
 import requests
 import json
-import wx
 
-class MainWindow(wx.Frame):
-    def __init__(self,parent,title):
-        wx.Frame.__init__(self,parent,title=title,size=(200,200))
-        self.control = wx.TextCtrl(self,style = wx.TE_MULTILINE)
-        self.Show(True)
-
-app = wx.App(False)
-frame = MainWindow(None,"small editor")
-app.MainLoop()
-
-burp0_cookies = {"lang": "\"\"", "JSESSIONID": "9BE3174CB1FB5841563AFC403CA6CF34"}
-url = "https://10.118.2.151:8443"
+burp0_cookies = {"lang": "\"\"", "JSESSIONID": "5229495A9509F3C3569D22F615AD87C7"}
+with open("cookie.txt","r") as f:
+    burp0_cookies["JSESSIONID"] = f.read()
+url = "********************"
 
 #获取现有系统的固定id
 def get_info_list():
-    burp0_url = "https://10.118.2.151:8443/smp/asset/group/list?groupId=0&viewType=manage"
-    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "https://10.118.2.151:8443/smp/asset/viewTopoMain1?groupId=10885&viewType=manage&view=list&switchView=&selectedNode=", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
+    burp0_url = "********************/smp/asset/group/list?groupId=0&viewType=manage"
+    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "********************/smp/asset/viewTopoMain1?groupId=10885&viewType=manage&view=list&switchView=&selectedNode=", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
     rq = requests.get(burp0_url, headers=burp0_headers, cookies=burp0_cookies,verify=False)
     rq = json.loads(rq.text)
     return rq
@@ -29,8 +20,8 @@ def aciton(target_id,current_id,proxy_id):
         print(current_id,"已在下线资产目录中，无需转移。")
         pass
     else:
-        burp0_url = "https://10.118.2.151:8443/smp/asset/moveListAjax?targetGroupId="+str(target_id)+"&currentGroupId="+str(current_id)+"&proxyIds="+str(proxy_id)+"&viewType=manage"
-        burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "https://10.118.2.151:8443/smp/asset/viewTopoMain1?groupId=10885&viewType=manage&view=list&switchView=&selectedNode=", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
+        burp0_url = "********************/smp/asset/moveListAjax?targetGroupId="+str(target_id)+"&currentGroupId="+str(current_id)+"&proxyIds="+str(proxy_id)+"&viewType=manage"
+        burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "********************/smp/asset/viewTopoMain1?groupId=10885&viewType=manage&view=list&switchView=&selectedNode=", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
         rq = requests.get(burp0_url, headers=burp0_headers, cookies=burp0_cookies,verify=False)
         rq = rq.text
         print(current_id,"转移中成功！")
@@ -38,8 +29,8 @@ def aciton(target_id,current_id,proxy_id):
 
 #搜索此ip所有的资产类型
 def research(ip):
-    burp0_url = "https://10.118.2.151:8443/smp/asset/assetBysx/viewAssetList?groupId=0&viewType=classify&operate=search&ipRangeStart="+ str(ip) +"&typeids="
-    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "Content-Type": "application/x-www-form-urlencoded", "Origin": "https://10.118.2.151:8443", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "https://10.118.2.151:8443/smp/asset/viewAssetList?groupId=0&viewType=classify&selectedNode=&switchView=false", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
+    burp0_url = "********************/smp/asset/assetBysx/viewAssetList?groupId=0&viewType=classify&operate=search&ipRangeStart="+ str(ip) +"&typeids="
+    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "Content-Type": "application/x-www-form-urlencoded", "Origin": "********************", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "********************/smp/asset/viewAssetList?groupId=0&viewType=classify&selectedNode=&switchView=false", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
     burp0_data = {"_search": "false", "nd": "1612751578195", "rows": "20", "page": "1", "sidx": "ip", "sord": "asc"}
     rq = requests.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies, data=burp0_data,verify=False)
     rq = json.loads(rq.text)
@@ -48,16 +39,16 @@ def research(ip):
 #如果测试节点下线资产不存在则创建下线系统，形如：xx系统-下线资产
 def creat_system(target_name):
     print("创建下线系统:",target_name)
-    burp0_url = "https://10.118.2.151:8443/smp/asset/group/insert"
-    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "Content-Type": "application/x-www-form-urlencoded", "Origin": "https://10.118.2.151:8443", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "https://10.118.2.151:8443/smp/asset/management/main?portal_id=portal-asset&wicket_id=module-asset_wickets-asset-management&root_id=-1", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
+    burp0_url = "********************/smp/asset/group/insert"
+    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "Content-Type": "application/x-www-form-urlencoded", "Origin": "********************", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "********************/smp/asset/management/main?portal_id=portal-asset&wicket_id=module-asset_wickets-asset-management&root_id=-1", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
     burp0_data = {"parentId": "10398", "value": '', "name":target_name, "description": '', "viewType": "manage", "managerId": '', "type": "0"}
     requests.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies, data=burp0_data,verify=False)
     return
 
 #获取所有的系统id信息
 def get_system_id():
-    burp0_url = "https://10.118.2.151:8443/smp/asset/group/read?groupId=11125&viewType=manage"
-    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "https://10.118.2.151:8443/smp/asset/management/main?portal_id=portal-asset&wicket_id=module-asset_wickets-asset-management&root_id=-1", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
+    burp0_url = "********************/smp/asset/group/read?groupId=11125&viewType=manage"
+    burp0_headers = {"Connection": "close", "Accept": "application/json, text/javascript, */*; q=0.01", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36", "X-Requested-With": "XMLHttpRequest", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Dest": "empty", "Referer": "********************/smp/asset/management/main?portal_id=portal-asset&wicket_id=module-asset_wickets-asset-management&root_id=-1", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9"}
     requests.get(burp0_url, headers=burp0_headers, cookies=burp0_cookies,verify=False)
     return
 #获取该资产所在的系统名，当前的id和资产id
@@ -133,6 +124,4 @@ def asset_down_start():
             aciton(target_id,current_id,proxy_id)
 
 if __name__ == '__main__':
-    
-     asset_down_start()
-
+    asset_down_start()
