@@ -204,7 +204,7 @@ def mail_body(file_path):
 <br> 您好：
 <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;附件为漏洞扫描结果，具体漏洞已导入漏洞平台**********/smp/index.jsp，现存高危漏洞{the_h}个，中危漏洞{the_m}个。请系统负责人尽快安排人员进行整改，整改完成后请发邮件给我方进行复查。
 <br> 
-<br> 詹福生 15038024016
+<br> xxxx xxxxxx
 <br> **********
     """
     return body,no_send
